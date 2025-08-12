@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.31)
-project(C_2048 C)
+project(c_2048_line C)
 
 set(CMAKE_C_STANDARD 23)
 
@@ -22,7 +22,7 @@ if (NOT SDL3_FOUND)
     include_dependency(SDL3 https://github.com/libsdl-org/SDL.git release-3.2.20)
 endif()
 
-add_executable(C_2048 main.c
+add_executable(c_2048_line main.c
         SDL_drawing_utilities.h
         SDL_drawing_utilities.c
         board_handling.c
@@ -31,16 +31,16 @@ add_executable(C_2048 main.c
         ikoniq_utilities.h
 )
 
-target_include_directories(C_2048 PUBLIC ${SDL3_INCLUDE_DIRS})
+target_include_directories(c_2048_line PUBLIC ${SDL3_INCLUDE_DIRS})
 
-target_compile_definitions(C_2048 PRIVATE SDL_MAIN_USE_CALLBACKS)
+target_compile_definitions(c_2048_line PRIVATE SDL_MAIN_USE_CALLBACKS)
 
-target_link_libraries(C_2048 PRIVATE SDL3::SDL3)
+target_link_libraries(c_2048_line PRIVATE SDL3::SDL3)
 
 if (WIN32)
     add_custom_command(
-            TARGET C_2048 POST_BUILD
-            COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:SDL3::SDL3>" "$<TARGET_FILE_DIR:C_2048>"
+            TARGET c_2048_line POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E copy_if_different "$<TARGET_FILE:SDL3::SDL3>" "$<TARGET_FILE_DIR:c_2048_line>"
             VERBATIM
     )
 endif ()

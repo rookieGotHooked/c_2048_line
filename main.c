@@ -67,10 +67,14 @@ SDL_AppResult SDL_AppIterate(void *appstate) {
     // Interacting
 
     while (SDL_PollEvent(&event) != 0) {
-        switch (event.type) {
-            case SDL_EVENT_MOUSE_BUTTON_DOWN:
-                printf("Clicked at (%f,%f) in game window\n", event.button.x, event.button.y);
-                break;
+        // switch (event.type) {
+        //     case SDL_EVENT_MOUSE_BUTTON_DOWN:
+        //         printf("Clicked at (%f,%f) in game window\n", event.button.x, event.button.y);
+        //         break;
+        // }
+        if (event.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
+            printf("Clicked at (%f,%f) in game window\n", event.button.x, event.button.y);
+            break;
         }
     }
 
